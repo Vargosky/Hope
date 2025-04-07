@@ -1,0 +1,15 @@
+---
+
+import Layout from '../layouts/Layout.astro';
+import NavBar from '../components/NavBar.astro';
+import PasosInteractivos from '../components/reactComponents/PasosInteractivos.jsx';
+
+import {pasos, pasosHelpless} from "../components/dataTest/datos"
+---
+
+<Layout>
+	<NavBar/>
+	<PasosInteractivos pasos = {pasos} titulodePasos = "Cómo Ayudar" client:load />
+	<PasosInteractivos pasos = {pasosHelpless} titulodePasos = "¿Necesitas Ayuda?" client:load />
+
+</Layout>

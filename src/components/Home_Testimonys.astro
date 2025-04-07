@@ -1,0 +1,15 @@
+---
+import Testimonio from "../components/boxes/TestBox.astro"
+import profile from "../../public/icons/profile_image.png"
+
+let mensajeA = "Gracias a High Hopes pude recibir ropa de abrigo justo cuando más lo necesitaba. Pensé que nadie se acordaba de nosotros, pero este proyecto me devolvió la fe en las personas. Ahora tengo esperanza y me siento más acompañado."
+let mensajeB = "Vi un HopeLink en una banca del parque y decidí escanearlo. Me sorprendió lo fácil que fue ayudar directamente a alguien que lo necesita. Saber que mi donación llega sin intermediarios me dio mucha confianza. ¡Una iniciativa brillante y humana!"
+
+
+---
+
+<section class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mt-10 w-5/6 mx-auto ">
+    <div class="transition-transform hover:scale-[1.02] duration-300"><Testimonio avatar={"../../public/icons/profile_image.png"} mensaje={mensajeA} nombre = "Carlos M., 48 años" /></div>
+    <div class="transition-transform hover:scale-[1.02] duration-300"><Testimonio avatar={"../../public/icons/profile_image.png"} mensaje={mensajeB} nombre = "Sofía L., 32 años"/></div>
+    
+  </section>

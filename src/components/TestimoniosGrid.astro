@@ -1,0 +1,35 @@
+---
+import TestimonioCard from './TestimonioCard.astro'
+
+// Puedes reemplazar esto por un fetch de JSON externo o Markdown luego
+const testimonios = [
+  {
+    mensaje: "Gracias a High Hopes pude recibir ropa de abrigo justo cuando más lo necesitaba. Pensé que nadie se acordaba de nosotros, pero este proyecto me devolvió la fe en las personas. Ahora tengo esperanza y me siento más acompañado.",
+    nombre: "Carlos M., 48 años",
+    avatar: "/avatars/user1.png"
+  },
+  {
+    mensaje: "Vi un HopeLink en una banca del parque y decidí escanearlo. Me sorprendió lo fácil que fue ayudar directamente a alguien que lo necesita. Saber que mi donación llega sin intermediarios me dio mucha confianza. ¡Una iniciativa brillante y humana!",
+    nombre: "Sofía L., 32 años",
+    avatar: "/avatars/user2.png"
+  },
+  {
+    mensaje: "Gracias a High Hopes, conseguí un lugar donde quedarme y volver a estudiar.",
+    nombre: "Testimonio",
+    avatar: "/avatars/user3.png"
+  }
+]
+---
+
+<section class="py-10 px-4 max-w-7xl mx-auto">
+  <h2 class="text-3xl font-bold text-center mb-8">Testimonios</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {testimonios.map((testimonio) => (
+      <TestimonioCard 
+        mensaje={testimonio.mensaje}
+        nombre={testimonio.nombre}
+        avatar={testimonio.avatar}
+      />
+    ))}
+  </div>
+</section>

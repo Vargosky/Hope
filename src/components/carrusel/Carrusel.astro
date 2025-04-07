@@ -1,0 +1,72 @@
+---
+const photos = ["./images/ind-01.png","./images/ind-fam-01.png","./images/logo.png"]  
+
+---
+
+<div class="relative w-3/4 max-w-4xl mx-auto overflow-hidden ">
+  <div
+    class="flex transition-transform duration-500 ease-in-out"
+    id="carousel-track"
+  >
+    {photos.map((photo: string, index: number) => (
+      <div class="w-full flex-shrink-0 aspect-[4/3]" key= {index}>
+        <img
+          src={photo}
+          alt={`Foto ${index + 1}`}
+          class="w-full h-full object-contain rounded-2xl"
+          loading="lazy"
+        />
+      </div>
+    ))}
+  </div>
+
+  <!-- Botones -->
+  <button
+    class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/60 hover:bg-white text-black p-2 rounded-r z-10"
+    onclick="moveSlide(-1); resetAutoplay();"
+  >
+    ‹
+  </button>
+  <button
+    class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/60 hover:bg-white text-black p-2 rounded-l z-10"
+    onclick="moveSlide(1); resetAutoplay();"
+  >
+    ›
+  </button>
+</div>
+
+<script is:inline>
+  let currentIndex = 0;
+  let autoplayInterval;
+
+  function moveSlide(direction) {
+    const track = document.getElementById('carousel-track');
+    const slide = track.children[0];
+    const slideWidth = slide.offsetWidth;
+    const totalSlides = track.children.length;
+
+    currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+
+    track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+  }
+
+  function startAutoplay() {
+    autoplayInterval = setInterval(() => {
+      moveSlide(1);
+    }, 4000); // cambia cada 4 segundos
+  }
+
+  function resetAutoplay() {
+    clearInterval(autoplayInterval);
+    startAutoplay();
+  }
+
+  // Iniciar autoplay al cargar
+  window.addEventListener('DOMContentLoaded', () => {
+    startAutoplay();
+    moveSlide(0); // posición inicial
+  });
+
+  // Ajustar si se cambia el tamaño
+  window.addEventListener('resize', () => moveSlide(0));
+</script>

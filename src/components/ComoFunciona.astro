@@ -1,0 +1,45 @@
+---
+import PasoCard from '../components/reactComponents/PasoCard.jsx'
+
+const pasos = [
+  {
+    imagen: "/images/QR_1.png",
+    titulo: "Escanea un HopeLink",
+    texto: "Encuentra uno en la calle, escanéalo y conoce la historia de una persona real.",
+    explicacion: "Los HopeLinks son códigos QR colocados en lugares estratégicos. Al escanearlos, accedes al perfil de una persona que necesita ayuda."
+  },
+  {
+    imagen: "/avatars/user1.png",
+    titulo: "Conoce su historia",
+    texto: "Accede al perfil, lee sobre sus necesidades y el tipo de ayuda que requiere.",
+    explicacion: "Cada perfil incluye datos verificados, con fotos, descripciones, y el tipo de ayuda que esa persona necesita."
+  },
+  {
+    imagen: "/images/dona_2.png",
+    titulo: "Dona directamente",
+    texto: "Haz una donación segura y sin intermediarios, dirigida a esa persona.",
+    explicacion: "Todas las donaciones se hacen directamente a través de canales seguros. No hay terceros involucrados."
+  },
+  {
+    imagen: "/images/seguimiento.png",
+    titulo: "Haz seguimiento",
+    texto: "Recibe actualizaciones y verifica que tu ayuda llegó a destino.",
+    explicacion: "Podrás recibir actualizaciones cuando la persona reciba la ayuda y cómo se utilizó."
+  }
+];
+---
+
+<section class="py-12 px-4 max-w-7xl mx-auto text-center">
+  <h2 class="text-3xl font-bold mb-8">¿Cómo funciona?</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    {pasos.map((paso) => (
+      <PasoCard 
+        imagen={paso.imagen}
+        titulo={paso.titulo}
+        texto={paso.texto}
+        explicacion={paso.explicacion}
+        
+      />
+    ))}
+  </div>
+</section>

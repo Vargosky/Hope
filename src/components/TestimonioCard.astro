@@ -1,0 +1,17 @@
+---
+const {
+  nombre = "Testimonio",
+  mensaje = "Gracias a High Hopes, conseguí un lugar donde quedarme y volver a estudiar",
+  avatar = "/avatar-default.png"
+} = Astro.props;
+---
+
+<article class="flex items-start bg-white rounded-2xl shadow p-4 transition-transform hover:scale-[1.02] duration-300">
+  <div class="mr-4 w-full">
+    <img src={avatar} alt="Foto de perfil" class="w-12 h-12 rounded-full object-cover" />
+  </div>
+  <div>
+    <p class="text-gray-800 font-semibold mb-2">{mensaje}</p>
+    <span class="text-sm text-gray-500">{nombre}</span>
+  </div>
+</article>

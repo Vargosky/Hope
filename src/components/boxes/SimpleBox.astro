@@ -1,0 +1,13 @@
+---
+export interface Props {
+  icon: string; // ruta de imagen o SVG
+  title: string;
+}
+
+const { icon, title } = Astro.props;
+---
+
+<div class="flex flex-col items-center gap-2 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition transition-transform hover:scale-[1.02] duration-300 h-36">
+  <img src={icon} alt={title} class="w-12 h-12" />
+  <p class="text-center font-medium text-[#063d50] text-sm md:text-base">{title}</p>
+</div>

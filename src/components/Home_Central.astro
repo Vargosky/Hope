@@ -1,0 +1,31 @@
+---
+import Carrusel from "./carrusel/Carrusel.astro"
+import imagen1 from './carrusel/images/ind-01.png'
+
+const fotos = [
+  './carrusel/images/ind-01.png',
+  imagen1,
+  imagen1,
+];
+---
+<section class="flex flex-col md:flex-row justify-between items-center gap-8 p-8 w-5/6 mx-auto bg-gray-100 mt-10 rounded-2xl">
+  <div class="flex-1 min-w-[280px]">
+    <h1 class="text-4xl lg:text-6xl md:text-5xl font-bold text-[#063d50] mb-6 ml-5">
+      Conecta, Dona <br />Cambia una vida.
+    </h1>
+    <button class="bg-blue-500 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-lg transition-colors lg:ml-15 ml-8 ">
+      <span class="text-3xl font-bold">
+        AYUDA AHORA
+      </span> 
+    </button>
+  </div>
+  <div class="flex-1 min-w-[200px] text-center rounded-2xl">
+    
+    <Carrusel fotos = {fotos}/>
+    <!-- <img src={"/images/ind-01.png"} alt="Persona mostrando HopeLink QR" class="max-w-[240px] mx-auto" /> -->
+  
+  </div>
+</section>
+
+
+
