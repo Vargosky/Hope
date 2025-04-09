@@ -1,0 +1,55 @@
+---
+import donor from '../components/dataTest/perfil.json';
+---
+
+<div class="profile-container">
+  <h2>Perfil</h2>
+  <div class="profile-card">
+    <img src={donor.avatarUrl} alt="Avatar" class="avatar" />
+    <div class="info">
+      <h3>{donor.name}</h3>
+      <p><strong>Correo:</strong> {donor.email}</p>
+      <p><strong>Donaciones:</strong> {donor.donationsCount}</p>
+      <p><strong>Total Donado:</strong> ${donor.totalDonated}</p>
+      <p><strong>Rango:</strong> {donor.level}</p>
+    </div>
+    <div class="heart">
+      ❤️
+    </div>
+  </div>
+</div>
+
+<style>
+  .profile-container {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .profile-card {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    gap: 1.5rem;
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #4a90e2;
+  }
+
+  .info {
+    flex: 1;
+  }
+
+  .heart {
+    font-size: 2rem;
+    color: #e74c3c;
+  }
+</style>

@@ -1,15 +1,11 @@
 ---
-const photos = ["./images/ind-01.png","./images/ind-fam-01.png","./images/logo.png"]  
-
+const photos = ["./images/ind-01.png", "./images/ind-fam-01.png", "./images/logo.png"];
 ---
 
-<div class="relative w-3/4 max-w-4xl mx-auto overflow-hidden ">
-  <div
-    class="flex transition-transform duration-500 ease-in-out"
-    id="carousel-track"
-  >
+<div class="relative w-3/4 max-w-4xl mx-auto overflow-hidden">
+  <div class="flex transition-transform duration-500 ease-in-out" id="carousel-track">
     {photos.map((photo: string, index: number) => (
-      <div class="w-full flex-shrink-0 aspect-[4/3]" key= {index}>
+      <div class="w-full flex-shrink-0 aspect-[4/3]">
         <img
           src={photo}
           alt={`Foto ${index + 1}`}
@@ -46,7 +42,6 @@ const photos = ["./images/ind-01.png","./images/ind-fam-01.png","./images/logo.p
     const totalSlides = track.children.length;
 
     currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
-
     track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
   }
 

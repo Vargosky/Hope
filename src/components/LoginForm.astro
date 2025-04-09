@@ -1,0 +1,116 @@
+<div class="flex min-h-screen items-center justify-center bg-gray-100">
+    <div class="w-full max-w-md rounded-xl bg-white p-8 shadow-md">
+      <h2 class="mb-6 text-center text-2xl font-bold text-gray-800">Iniciar Sesión</h2>
+  
+      <form id="loginForm" class="space-y-4">
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="mt-1 w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+          />
+          <p id="emailError" class="text-red-500 text-sm hidden">Correo no válido</p>
+        </div>
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            class="mt-1 w-full rounded-md border border-gray-300 p-2 focus:border-blue-500 focus:outline-none"
+          />
+        </div>
+        <button
+          type="submit"
+          class="w-full rounded-md bg-blue-600 p-2 text-white hover:bg-blue-700 transition duration-200"
+        >
+          Ingresar
+        </button>
+        <p id="formMessage" class="text-center text-sm text-red-600 hidden mt-2"></p>
+      </form>
+  
+      <p class="mt-4 text-center text-sm text-gray-600">
+        ¿No tienes cuenta?
+        <a href="/register" class="text-blue-600 hover:underline">Regístrate</a>
+      </p>
+    </div>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Realizamos type casting de los elementos para indicar sus tipos específicos.
+      const form = document.getElementById('loginForm') as HTMLFormElement | null;
+      const emailInput = document.getElementById('email') as HTMLInputElement | null;
+      const passwordInput = document.getElementById('password') as HTMLInputElement | null;
+      const emailError = document.getElementById('emailError') as HTMLElement | null;
+      const formMessage = document.getElementById('formMessage') as HTMLElement | null;
+  
+      // Función para validar el correo electrónico.
+      function isValidEmail(email: string): boolean {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+  
+      if (form && emailInput && passwordInput && emailError && formMessage) {
+        emailInput.addEventListener('input', () => {
+          if (!isValidEmail(emailInput.value)) {
+            emailError.classList.remove('hidden');
+          } else {
+            emailError.classList.add('hidden');
+          }
+        });
+  
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+  
+          const email = emailInput.value.trim();
+          const password = passwordInput.value;
+  
+          if (!isValidEmail(email)) {
+            emailError.classList.remove('hidden');
+            return;
+          }
+  
+          try {
+            const res = await fetch('/api/login', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email, password })
+            });
+  
+            if (!res.ok) {
+              throw new Error('Credenciales incorrectas');
+            }
+  
+            const data = await res.json();
+            localStorage.setItem('token', data.token || 'mockToken123');
+  
+            formMessage.classList.remove('text-red-600');
+            formMessage.classList.add('text-green-600');
+            formMessage.textContent = 'Inicio de sesión exitoso 🎉';
+            formMessage.classList.remove('hidden');
+  
+            setTimeout(() => {
+              window.location.href = '/dashboard';
+            }, 1500);
+          } catch (err: unknown) {
+            // Comprobamos si el error es una instancia de Error para acceder a la propiedad message.
+            if (err instanceof Error) {
+              formMessage.textContent = err.message;
+            } else {
+              formMessage.textContent = 'Error en el login';
+            }
+            formMessage.classList.remove('hidden');
+            formMessage.classList.remove('text-green-600');
+            formMessage.classList.add('text-red-600');
+          }
+        });
+      } else {
+        console.error('Algún elemento del formulario no se encontró en el DOM.');
+      }
+    });
+  </script>
+  

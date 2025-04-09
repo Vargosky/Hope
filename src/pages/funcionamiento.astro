@@ -1,15 +1,18 @@
 ---
-
 import Layout from '../layouts/Layout.astro';
 import NavBar from '../components/NavBar.astro';
 import PasosInteractivos from '../components/reactComponents/PasosInteractivos.jsx';
-
-import {pasos, pasosHelpless} from "../components/dataTest/datos"
+import { pasos, pasosHelpless } from "../components/dataTest/datos";
 ---
 
 <Layout>
-	<NavBar/>
-	<PasosInteractivos pasos = {pasos} titulodePasos = "Cómo Ayudar" client:load />
-	<PasosInteractivos pasos = {pasosHelpless} titulodePasos = "¿Necesitas Ayuda?" client:load />
-
+  <NavBar/>
+  <div class="mt-20 w-3/4 mx-auto space-y-12">
+    <div class="bg-white shadow-xl rounded-2xl p-8 transition transform hover:scale-105 hover:shadow-2xl duration-300">
+      <PasosInteractivos pasos={pasos} titulodePasos="¿Quieres Ayudar?" client:load />
+    </div>
+    <div class="bg-white shadow-xl rounded-2xl p-8 transition transform hover:scale-105 hover:shadow-2xl duration-300">
+      <PasosInteractivos pasos={pasosHelpless} titulodePasos="¿Necesitas Ayuda?" client:load />
+    </div>
+  </div>
 </Layout>

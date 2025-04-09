@@ -1,5 +1,4 @@
 ---
-// Array con etiquetas limpias para href
 const menu = [
   { label: "Cómo Funciona", href: "funcionamiento" },
   { label: "Estudiantes", href: "estudiantes" },
@@ -11,13 +10,10 @@ import { Image } from 'astro:assets';
 import logo from '../../public/images/logo_2.png';
 ---
 
-
-
 <nav class="bg-white border-b border-gray-200 shadow-md">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-16 items-center">
       <!-- Logo -->
-      
       <a href="/" class="text-4xl font-bold text-blue-600">
         <Image src={logo} width={200} alt="Logo High Hope"/>
       </a>
@@ -33,13 +29,16 @@ import logo from '../../public/images/logo_2.png';
 
       <!-- Botones derecha -->
       <div class="hidden md:flex items-center space-x-3">
-        <button class="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
+        <a
+          href="/login"
+          class="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+        >
           <!-- Login icon -->
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H3m0 0l4-4m-4 4l4 4m6-4a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           Login
-        </button>
+        </a>
         <button class="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition">
           <!-- Logout icon -->
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -65,18 +64,21 @@ import logo from '../../public/images/logo_2.png';
   <!-- Menú mobile -->
   <div id="mobile-menu" class="md:hidden hidden flex flex-col px-4 pb-4 animate-fade-down space-y-2">
     {menu.map(item => (
-      <a href={`${item.href}`} class="text-gray-700 hover:text-blue-600 block font-medium">
+      <a href={item.href} class="text-gray-700 hover:text-blue-600 block font-medium">
         {item.label}
       </a>
     ))}
     <div class="flex flex-col gap-2 mt-2">
-      <button class="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
+      <a
+        href="/login"
+        class="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+      >
         <!-- Login icon -->
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H3m0 0l4-4m-4 4l4 4m6-4a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
         Login
-      </button>
+      </a>
       <button class="mt-1 flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition">
         <!-- Logout icon -->
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -97,6 +99,4 @@ import logo from '../../public/images/logo_2.png';
       });
     }
   </script>
-
-
 </nav>
